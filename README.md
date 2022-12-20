@@ -4,15 +4,14 @@
 # 檔案說明
 
 ## pruning_LiteonRacingData.py
-針對使用光寶資料集訓練之ResNet模型進行剪枝，以下為使用者須自行修改之部分:
-
-`model_choose` : 1 = ResNet50, 2 = ResNet101, 3 = ResNet152
-`criteria_choose` : 剪枝標準，1 = L1-norm, 2 = L2-norm, 3 = APoZ
-`regularization_choose` : 正則化方法，1 = LASSO, 2 = Ridge, 3 = Group_LASSO
-`path` : 模型辨識結果儲存路徑
-`weight_save_path` : 模型權重儲存路徑
-`model_save_path` : 模型儲存路徑
-`model_out_classnum` : 模型之輸出類別數量
+針對使用光寶資料集訓練之ResNet模型進行剪枝，以下為使用者須自行修改之部分:  
+`model_choose` : 1 = ResNet50, 2 = ResNet101, 3 = ResNet152  
+`criteria_choose` : 剪枝標準，1 = L1-norm, 2 = L2-norm, 3 = APoZ  
+`regularization_choose` : 正則化方法，1 = LASSO, 2 = Ridge, 3 = Group_LASSO  
+`path` : 模型辨識結果儲存路徑  
+`weight_save_path` : 模型權重儲存路徑  
+`model_save_path` : 模型儲存路徑  
+`model_out_classnum` : 模型之輸出類別數量  
 
 
 
