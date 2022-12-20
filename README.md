@@ -3,7 +3,7 @@
 
 # 檔案說明
 
-### pruning_LiteonRacingData.py
+### pruning_LiteonRacingData.py ###
 針對使用光寶資料集訓練之ResNet模型進行剪枝，以下為使用者須自行修改之部分:  
 `model_choose` : 模型選擇， 1 = ResNet50, 2 = ResNet101, 3 = ResNet152  
 `criteria_choose` : 剪枝標準，1 = L1-norm, 2 = L2-norm, 3 = APoZ  
@@ -12,13 +12,13 @@
 `weight_save_path` : 模型權重儲存路徑  
 `model_save_path` : 模型儲存路徑  
 `model_out_classnum` : 模型之輸出類別數量  
+-----------------------------------------------------------------------------------------
 
 
-
-### pruning_standfordcar.py.py
+### pruning_standfordcar.py.py ###
 針對使用公開資料集Stanford Cars Dataset訓練之模型進行剪枝，使用者須自行修改之部分同pruning_LiteonRacingData
+-----------------------------------------------------------------------------------------
 
 
-
-### wgan_trans_final.ipynb
+### wgan_trans_final.ipynb ###
 以基於Wasserstein距離之對抗式領域自適應方法訓練模型，以此將源特徵域映射到目標域上
