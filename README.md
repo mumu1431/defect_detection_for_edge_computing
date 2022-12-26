@@ -24,4 +24,5 @@
 
 
 ### wgan_trans_final.ipynb ###
-以基於Wasserstein距離之對抗式領域自適應方法訓練模型，以此將源特徵域映射到目標域上
+以基於Wasserstein距離之對抗式領域自適應方法訓練模型，以此將source domain和target domain都映射到同一featrue space上。
+詳細說明請看程式碼註解
