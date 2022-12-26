@@ -489,67 +489,6 @@ class my_Dataset(Dataset):
     def __getitem__(self, idx):
         return self.images[idx], self.labels[idx]
 
-# load whole B dataset
-
-def load_all_img_B(class_num, train_img_num, test_img_num):
-    path = "../xxx/finetune/LiteonRacingData/B/"+ str(class_num) + "/" 
-    img_train = []
-    img_test = []
-    f_name = []
-    count = 0
-    for f in listdir(path):
-      if f == "desktop.ini":
-        continue
-      else:
-        f_name.append(f)
-    f_name.sort()
-    random.seed(load_all_seed)
-    random.shuffle(f_name)    
-    
-    for name in f_name:
-      if(class_num!=0):
-        if count < test_img_num:
-          img_test.append(cv2.resize(cv2.cvtColor(cv2.imread(path + name),cv2.IMREAD_COLOR), (224, 224), interpolation=cv2.INTER_CUBIC))
-          count += 1
-        elif count < 10:
-          img_train.append(cv2.resize(cv2.cvtColor(cv2.imread(path + name),cv2.IMREAD_COLOR), (224, 224), interpolation=cv2.INTER_CUBIC))
-          count += 1
-        else:
-          break
-      else:
-        if count < test_img_num:
-          img_test.append(cv2.resize(cv2.cvtColor(cv2.imread(path + name),cv2.IMREAD_COLOR), (224, 224), interpolation=cv2.INTER_CUBIC))
-          count += 1
-        elif count < train_img_num + test_img_num:
-          img_train.append(cv2.resize(cv2.cvtColor(cv2.imread(path + name),cv2.IMREAD_COLOR), (224, 224), interpolation=cv2.INTER_CUBIC))
-          count += 1
-        else:
-          break
-    return img_train, img_test
-
-
-
-def load_img_from_Liteon_Charlie_gen_B(class1, remaining_count):
-  img_x_train = []
-  path = "/home/xxx/Liteon_Charlie_gen/B/"+ str(class1) + "_gen/"
-  count = 0
-  f_name = []
-  
-  for f in listdir(path):
-    f_name.append(f)
-  f_name.sort()
-  random.seed(load_from_gen_seed)
-  random.shuffle(f_name)
-  
-  # fill up 30 frames
-  for name in f_name:
-    if count < remaining_count:
-      img_x_train.append(cv2.resize(cv2.cvtColor(cv2.imread(path + name),cv2.IMREAD_COLOR), (224, 224), interpolation=cv2.INTER_CUBIC))
-      count += 1
-    else:
-      break
-  return img_x_train
-
 
 if __name__ == '__main__': 
   device = torch.device('cuda')
