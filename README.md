@@ -13,7 +13,7 @@
 `model_save_path` : 模型儲存路徑  
 `model_out_classnum` : 模型之輸出類別數量  
 
-另也請修改函式`load_model()`、`load_all_img()`中模型權重載入之路徑
+另也請修改函式`load_model()`、`load_all_img()`、`open_image_from_Liteon_Charlie_gen()`中模型權重與(增量)資料集載入之路徑
 ***  
 
 
