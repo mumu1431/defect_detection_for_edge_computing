@@ -46,8 +46,8 @@ model_choose = 3  #1 => resnet50 , 2 => resnet101 , 3 => resnet152
 criteria_choose = 2  #1 => L1 , 2 => L2 , 3 => APoZ
 regularization_choose = 2 #1 => lasso , 2 => ridge , 3 => group_lasso
 path = 'training_record/resnet101_L2_Ridge_0703_3epoch.txt'  # 輸出寫成txt
-weight_save_path = '/home/sallylab/charlie/charliesModel/BGR/20220703/pruned/resnet101_L2_Ridge_3epoch_weight_0703.pt'
-model_save_path = '/home/sallylab/charlie/charliesModel/BGR/20220703/pruned/resnet101_L2_Ridge_3epoch_0703.pt'
+weight_save_path = '/home/xxx/Model/BGR/20220703/pruned/resnet101_L2_Ridge_3epoch_weight_0703.pt'
+model_save_path = '/home/xxx/Model/BGR/20220703/pruned/resnet101_L2_Ridge_3epoch_0703.pt'
 
 model_out_classnum = 8
 
@@ -83,19 +83,19 @@ def load_model():
     model = models.resnet50(pretrained=False)  #change
     fc_feature = model.fc.in_features    #change
     model.fc = torch.nn.Linear(fc_feature,model_out_classnum)  #change
-    model.load_state_dict(torch.load('/home/sallylab/charlie/charliesModel/BGR/20220703/unpruned/A2B_resnet50_finetune_0703_40epoch.pt')) # ResNet50 nofinetune
+    model.load_state_dict(torch.load('/home/xxx/Model/BGR/20220703/unpruned/A2B_resnet50_finetune_0703_40epoch.pt')) # ResNet50 nofinetune
 
   elif model_choose == 2:
     model = models.resnet101(pretrained=False)
     fc_feature = model.fc.in_features    #change
     model.fc = torch.nn.Linear(fc_feature,model_out_classnum)  #change
-    model.load_state_dict(torch.load('/home/sallylab/charlie/charliesModel/BGR/20220703/unpruned/A2B_resnet101_finetune_0703_30epoch.pt'))
+    model.load_state_dict(torch.load('/home/xxx/Model/BGR/20220703/unpruned/A2B_resnet101_finetune_0703_30epoch.pt'))
 
   else:
     model = models.resnet152(pretrained=False)
     fc_feature = model.fc.in_features    #change
     model.fc = torch.nn.Linear(fc_feature,model_out_classnum)  #change
-    model.load_state_dict(torch.load('/home/sallylab/charlie/charliesModel/BGR/20220703/unpruned/A2B_resnet152_finetune_0703_40epoch.pt'))
+    model.load_state_dict(torch.load('/home/xxx/Model/BGR/20220703/unpruned/A2B_resnet152_finetune_0703_40epoch.pt'))
 
   return model
 
@@ -459,7 +459,7 @@ def test(copy_model, test_dataset):
       test_outputs = copy_model(imgs)  #CHANGE
       test_loss = loss_fn(test_outputs,labels)
       test_loss_train += test_loss.item()
-      test_predicted = torch.max(test_outputs,dim = 1) #https://blog.csdn.net/cunchi4221/article/details/107471005
+      test_predicted = torch.max(test_outputs,dim = 1) 
       test_total += labels.shape[0]
       test_correct += int((test_predicted.indices == labels).sum())
       
@@ -487,7 +487,7 @@ class my_Dataset(Dataset):
 # load whole B dataset
 # 讀入所有資料
 def load_all_img(AorB, class_num, p_train_num, p_test_num):
-  path = "../mumu/finetune/LiteonRacingData/" + str(AorB) + "/" + str(class_num) + "/" 
+  path = "../xxx/finetune/LiteonRacingData/" + str(AorB) + "/" + str(class_num) + "/" 
   img_train = []
   img_test = []
   f_name = []
@@ -515,7 +515,7 @@ def load_all_img(AorB, class_num, p_train_num, p_test_num):
 def open_image_from_Liteon_Charlie_gen(AorB, classNum, folder_ForG, sheet_num=0, load_all=False):
   img_x_train = []
   f_name = []
-  path = "/home/sallylab/charlie/Liteon_Charlie_gen/"+str(AorB)+"/"+ str(classNum) + "_" + str(folder_ForG) + "/"
+  path = "/home/xxx/Liteon_Charlie_gen/"+str(AorB)+"/"+ str(classNum) + "_" + str(folder_ForG) + "/"
   for f in listdir(path):
     f_name.append(f)
   f_name.sort()
