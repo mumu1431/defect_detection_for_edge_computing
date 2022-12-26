@@ -46,8 +46,8 @@ model_choose = 3  #1 => resnet50 , 2 => resnet101 , 3 => resnet152
 criteria_choose = 2  #1 => L1 , 2 => L2 , 3 => APoZ
 regularization_choose = 2 #1 => lasso , 2 => ridge , 3 => group_lasso
 path = 'training_record/StanfordCarsr_resnet101_1epoch_pruned_0926_le5_maxacc1.txt'  # write txt
-weight_save_path = '/home/ldap/sallylin/mumu/model/StanfordCars/pruned/StanfordCarsr_resnet101_1epoch_pruned_weight_0926_le5_maxacc1.pt'
-model_save_path = '/home/ldap/sallylin/mumu/model/StanfordCars/pruned/StanfordCarsr_resnet101_1epoch_pruned_0926_le5_maxacc1.pt'
+weight_save_path = '/home/xxx/model/StanfordCars/pruned/StanfordCarsr_resnet101_1epoch_pruned_weight_0926_le5_maxacc1.pt'
+model_save_path = '/home/xxx/model/StanfordCars/pruned/StanfordCarsr_resnet101_1epoch_pruned_0926_le5_maxacc1.pt'
 
 model_out_classnum = 196
 
@@ -83,19 +83,19 @@ def load_model():
     model = models.resnet50(pretrained=False)  #change
     fc_feature = model.fc.in_features    #change
     model.fc = torch.nn.Linear(fc_feature,model_out_classnum)  #change
-    model.load_state_dict(torch.load('/home/ldap/sallylin/mumu/model/StanfordCars/StanfordCarsr_resnet50_3epoch_le5.pt')) # ResNet50 nofinetune
+    model.load_state_dict(torch.load('/home/xxx/model/StanfordCars/StanfordCarsr_resnet50_3epoch_le5.pt')) # ResNet50 nofinetune
 
   elif model_choose == 2:
     model = models.resnet101(pretrained=False)
     fc_feature = model.fc.in_features    #change
     model.fc = torch.nn.Linear(fc_feature,model_out_classnum)  #change
-    model.load_state_dict(torch.load('/home/ldap/sallylin/mumu/model/StanfordCars/StanfordCarsr_resnet101_3epoch_le5.pt'))
+    model.load_state_dict(torch.load('/home/xxx/StanfordCars/StanfordCarsr_resnet101_3epoch_le5.pt'))
     
   else:
     model = models.resnet152(pretrained=False)
     fc_feature = model.fc.in_features    #change
     model.fc = torch.nn.Linear(fc_feature,model_out_classnum)  #change
-    model.load_state_dict(torch.load('/home/ldap/sallylin/mumu/model/StanfordCars/StanfordCarsr_resnet152_3epoch_le5.pt'))
+    model.load_state_dict(torch.load('/home/xxx/model/StanfordCars/StanfordCarsr_resnet152_3epoch_le5.pt'))
     
 
   return model
@@ -464,7 +464,7 @@ def test(copy_model, test_dataset):
       test_outputs = copy_model(imgs)  #CHANGE
       test_loss = loss_fn(test_outputs,labels)
       test_loss_train += test_loss.item()
-      test_predicted = torch.max(test_outputs,dim = 1) #https://blog.csdn.net/cunchi4221/article/details/107471005
+      test_predicted = torch.max(test_outputs,dim = 1)
       test_total += labels.shape[0]
       test_correct += int((test_predicted.indices == labels).sum())
       
@@ -492,7 +492,7 @@ class my_Dataset(Dataset):
 # load whole B dataset
 
 def load_all_img_B(class_num, train_img_num, test_img_num):
-    path = "../mumu/finetune/LiteonRacingData/B/"+ str(class_num) + "/" 
+    path = "../xxx/finetune/LiteonRacingData/B/"+ str(class_num) + "/" 
     img_train = []
     img_test = []
     f_name = []
@@ -531,7 +531,7 @@ def load_all_img_B(class_num, train_img_num, test_img_num):
 
 def load_img_from_Liteon_Charlie_gen_B(class1, remaining_count):
   img_x_train = []
-  path = "/home/sallylab/charlie/Liteon_Charlie_gen/B/"+ str(class1) + "_gen/"
+  path = "/home/xxx/Liteon_Charlie_gen/B/"+ str(class1) + "_gen/"
   count = 0
   f_name = []
   
@@ -561,9 +561,9 @@ if __name__ == '__main__':
   transforms.ToTensor(),
   transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
     
-  stanfordCars_train = torchvision.datasets.StanfordCars(root = '/home/ldap/sallylin/mumu/StanfordCars/stanfordCars_train', split = 'train', transform=all_transforms, download=True)
+  stanfordCars_train = torchvision.datasets.StanfordCars(root = '/home/xxx/StanfordCars/stanfordCars_train', split = 'train', transform=all_transforms, download=True)
   
-  stanfordCars_test = torchvision.datasets.StanfordCars(root = '/home/ldap/sallylin/mumu/StanfordCars/stanfordCars_test', split = 'test', transform=all_transforms, download=True)
+  stanfordCars_test = torchvision.datasets.StanfordCars(root = '/home/xxx/StanfordCars/stanfordCars_test', split = 'test', transform=all_transforms, download=True)
   
   
   print(stanfordCars_train.__len__())
