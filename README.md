@@ -13,7 +13,7 @@
 `model_save_path` : 模型儲存路徑  
 `model_out_classnum` : 模型之輸出類別數量  
 
-另也請修改函式`load_model()`中模型權重載入之路徑
+另也請修改函式`load_model()`、`load_all_img()`中模型權重載入之路徑
 ***  
 
 
