@@ -19,6 +19,7 @@
 
 ### pruning_standfordcar.py.py ###
 針對使用公開資料集Stanford Cars Dataset訓練之模型進行剪枝，使用者須自行修改之部分同pruning_LiteonRacingData
+另也請修改函式`load_model()`、503行、505行中模型權重與資料集載入之路徑
 ***  
 
 
